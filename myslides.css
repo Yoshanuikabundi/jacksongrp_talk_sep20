@@ -1,0 +1,13 @@
+.reveal .slide-number {
+    font-size: 24pt
+}
+
+blockquote {
+    font-size: 18pt
+}
+
+#refs {
+    font-size: 14pt
+}
+
+.reveal section img { background:none; border:none; box-shadow:none; }

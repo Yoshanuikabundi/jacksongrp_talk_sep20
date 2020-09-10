@@ -1,0 +1,82 @@
+{
+    "build_systems":
+    [
+        {
+            "name": "Pandoc",
+                    "cmd": [
+                        "pandoc",
+                        "myslides.md",
+                        "-t", "revealjs",
+                        "-s",
+                        "-o", "myslides.html",
+                        "--mathjax",
+                        "-V", "controls=false",
+                        "--slide-level", "2",
+                        "--css", "myslides.css",
+                        "--template", "revealjs.template",
+                        "--filter", "pandoc-citeproc",
+                        "--variable=theme:simple",
+                    ],
+
+            "variants": [
+                {
+                    "name": "to notes",
+                    "cmd": [
+                        "pandoc",
+                        "myslides.md",
+                        "-t", "latex",
+                        "-s",
+                        "-o", "notes.pdf",
+                        "--filter=pandoc-citeproc",
+                        "--pdf-engine=xelatex"
+                    ],
+                },
+                {
+                    "name": "to pdf presentation",
+                    "cmd": [
+                        "pandoc",
+                        "myslides.md",
+                        "-t", "beamer",
+                        "-s",
+                        "-o", "myslides.pdf",
+                        "--slide-level=2",
+                        "--filter=pandoc-citeproc",
+                        "--pdf-engine=xelatex",
+                        "-V=aspectratio:169",
+                        "--template", "beamer.template",
+                    ],
+                },
+                {
+                    "name": "to pptx",
+                    "cmd": [
+                        "pandoc",
+                        "myslides.md",
+                        "-t", "pptx",
+                        "-s",
+                        "-o", "myslides.pptx",
+                        "--slide-level=2",
+                        "--filter=pandoc-citeproc",
+                        "--pdf-engine=xelatex"
+                    ],
+                },
+            ],
+            "working_dir": "$project_path"
+        }
+    ],
+    "folders":
+	[
+		{
+			"path": "."
+		}
+	],
+    "settings":
+    {
+
+        "preview_math_template_packages":
+        [
+            "\\usepackage{amsmath}",
+            "\\usepackage{amssymb}",
+            "\\usepackage{unicode-math}",
+        ],
+    }
+}

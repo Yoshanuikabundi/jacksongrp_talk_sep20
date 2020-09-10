@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Josh Mitchell">
+  <title>Enhanced Sampling</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reset.css">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" href="myslides.css"/>
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Enhanced Sampling</h1>
+  <p class="subtitle">In Molecular Dynamics</p>
+  <p class="author">Josh Mitchell</p>
+</section>
+
+<section><section id="minute-of-diversity" class="title-slide slide level1"><h1>Minute of diversity</h1></section><section class="slide level2">
+
+<p><img data-src="figs/pride_flags/lgbtqi_progress.jpg" style="width:40.0%" /></p>
+<p><img data-src="figs/pride_flags/bi.png" style="width:40.0%" /> <img data-src="figs/pride_flags/pan.png" style="width:40.0%" /></p>
+</section></section>
+<section><section id="basic-md-is-slow" class="title-slide slide level1"><h1>Basic MD is slow</h1></section><section id="goals-of-an-md-simulation" class="slide level2">
+<h2>Goals of an MD simulation</h2>
+<ul>
+<li>Get an equilibrium ensemble of states of a system</li>
+<li>… so that we can calculate some equilibrium property
+<ul>
+<li>Rate</li>
+<li>Free energy change</li>
+<li>Average macroscopic observable</li>
+<li>Lowest energy structure</li>
+</ul></li>
+<li>Non-equilibrium properties much harder</li>
+</ul>
+</section><section id="biomolecules-conspire-against-us" class="slide level2">
+<h2>Biomolecules conspire against us</h2>
+<ul>
+<li>Many interesting states with rare transitions
+<ul>
+<li>solvation changes</li>
+<li>side chain rotation</li>
+</ul></li>
+</ul>
+</section></section>
+<section><section id="the-free-energy-landscape" class="title-slide slide level1"><h1>The Free Energy Landscape</h1></section><section id="free-energy-is-probability" class="slide level2">
+<h2>Free Energy is probability</h2>
+<p><span class="math display">\[
+    \epsilon_{\mathrm{rel}}(x) = - K_B T \log(P(x))
+\]</span></p>
+<ul>
+<li>Energy is just maths applied to the probability</li>
+<li>Energy barriers are just transition regions of low probability</li>
+<li>If we know the FES along an interesting variable, we can calculate the average value by integrating over it</li>
+</ul>
+</section><section class="slide level2">
+
+<p><img data-src="figs/cln025_prob_fes.svg" width="1500" /></p>
+</section><section class="slide level2">
+
+<figure>
+<img data-src="figs/cln025_fes2d.svg" alt="So if we have an ensemble…" /><figcaption>So if we have an ensemble…</figcaption>
+</figure>
+</section></section>
+<section><section id="get-that-ensemble-with-slow-sampling" class="title-slide slide level1"><h1>Get that ensemble with slow sampling</h1></section></section>
+    </div>
+  </div>
+
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Push each slide change to the browser history
+        history: true,
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/math/math.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
